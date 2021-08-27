@@ -29,16 +29,19 @@ const useStyles = makeStyles((theme) => ({
   }));
 
 export default function ResultCard({result}) {
+    console.log(result)
     const classes = useStyles()
     const [user, setUser] = useState({})
 
     useEffect(() => {
-        axios.get(`${SEARCH_URL_USER}/${result.login}`)
-        .then((response) => {
-            setUser(response.data)
-        }).catch((error) => {
-            console.log(error)
-        })
+        if (result.login) {
+            axios.get(`${SEARCH_URL_USER}/${result.login}`)
+            .then((response) => {
+                setUser(response.data)
+            }).catch((error) => {
+                console.log(error)
+            })
+        }
     }, [])
 
     const isNull = (property) => { return property || 'N/A' }
@@ -51,8 +54,8 @@ export default function ResultCard({result}) {
                     image={user.avatar_url}
                     title="GitHub Profile"
                 />
-                <div className={classes.details}>
-                    <CardContent className={classes.content}>
+                <div className={classes.details} onClick={() => window.open(user.html_url, "_blank")} >
+                    <CardContent className={classes.content} >
                         <p>Username: {isNull(user.login)}</p>
                         <p>Location: {isNull(user.location)}</p>
                         <p>Name: {isNull(user.name)}</p>
