@@ -41,7 +41,7 @@ export default function ResultCard({result}) {
                 console.log(error)
             })
         }
-    }, [result.id])
+    }, [result.login])
 
     const isNull = (property) => { return property || 'N/A' }
 
