@@ -24,6 +24,8 @@ export default function Main() {
             }).catch((error) => {
                 console.log(error)
             })
+        } else {
+            setResults([])
         }
     },[searchTerm, email])
 

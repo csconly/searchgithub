@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     },
     content: {
       flex: '1 0 auto',
+      textAlign: 'left',
     },
     image: {
       width: 300,
@@ -23,13 +24,11 @@ const useStyles = makeStyles((theme) => ({
     },
     cardDiv: {
         justifyContent: 'center',
-        marginTop: 15,
-        margin: 200
+        margin: '25px 200px 0'
     }
   }));
 
 export default function ResultCard({result}) {
-    console.log(result)
     const classes = useStyles()
     const [user, setUser] = useState({})
 
@@ -42,7 +41,7 @@ export default function ResultCard({result}) {
                 console.log(error)
             })
         }
-    }, [])
+    }, [result.id])
 
     const isNull = (property) => { return property || 'N/A' }
 
